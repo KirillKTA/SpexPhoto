@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-bot = telegram.Bot(token=os.getenv('TELEGRAM_TOKEN'))
+bot = telegram.Bot(token=os.environ['TELEGRAM_TOKEN'])
 while True:
     images = os.listdir("images")
     random_image = random.choice(images)

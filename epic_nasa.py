@@ -25,5 +25,5 @@ if __name__ == '__main__':
 
     load_dotenv()
     os.makedirs("images", exist_ok=True)
-    apikey = os.getenv('NASA_APIKEY')
+    apikey = os.environ['NASA_APIKEY']
     fetch_nasa_epic_images(apikey)

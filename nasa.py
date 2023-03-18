@@ -26,5 +26,5 @@ if __name__ == '__main__':
     load_dotenv()
     os.makedirs("images",exist_ok=True)
     print(fetch_file_extension("https://apod.nasa.gov/apod/image/2211/LastRingPortrait_Cassini_4472.jpg"))
-    apikey = os.getenv('NASA_APIKEY')
+    apikey = os.environ['NASA_APIKEY']
     fetch_nasa_opod_images(apikey)

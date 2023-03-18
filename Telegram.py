@@ -12,6 +12,6 @@ while True:
     random_image = random.choice(images)
     image_path = os.path.join("images", random_image)
     with open(image_path, 'rb') as photo:
-        bot.send_photo(chat_id=os.getenv('TELEGRAM_ID'), photo=photo)
+        bot.send_photo(chat_id=os.environ['TELEGRAM_ID'], photo=photo)
     time.sleep(14400)
 

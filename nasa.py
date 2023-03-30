@@ -1,7 +1,7 @@
 import os
 import requests
-from main import download_image
-from main import fetch_file_extension
+from tools import download_image
+from tools import fetch_file_extension
 from dotenv import load_dotenv
 
 

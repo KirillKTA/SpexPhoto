@@ -5,10 +5,9 @@ from tools import download_image
 from dotenv import load_dotenv
 
 
-
 def fetch_nasa_epic_images(apikey):
 
-    payload = {"api_key": apikey,}
+    payload = {"api_key": apikey, }
     response = requests.get('https://api.nasa.gov/EPIC/api/natural/images', params=payload)
     response.raise_for_status()
     for number, link in enumerate(response.json()):
@@ -17,9 +16,6 @@ def fetch_nasa_epic_images(apikey):
         date = date.strftime("%Y/%m/%d")
         image_link = f"https://api.nasa.gov/EPIC/archive/natural/{date}/png/{link['image']}.png"
         download_image(image_link, image_path, params=payload)
-
-
-
 
 
 if __name__ == '__main__':

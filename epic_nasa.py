@@ -11,7 +11,7 @@ def fetch_nasa_epic_images(apikey):
     response = requests.get('https://api.nasa.gov/EPIC/api/natural/images', params=payload)
     response.raise_for_status()
     for number, link in enumerate(response.json()):
-        image_path = os.path.join('images', f'{number} epic.jpg')
+        image_path = f'{number} epic.jpg'
         date = datetime.fromisoformat(link["date"])
         date = date.strftime("%Y/%m/%d")
         image_link = f"https://api.nasa.gov/EPIC/archive/natural/{date}/png/{link['image']}.png"
@@ -21,6 +21,5 @@ def fetch_nasa_epic_images(apikey):
 if __name__ == '__main__':
 
     load_dotenv()
-    os.makedirs("images", exist_ok=True)
     apikey = os.environ['NASA_APIKEY']
     fetch_nasa_epic_images(apikey)

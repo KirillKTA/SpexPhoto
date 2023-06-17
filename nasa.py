@@ -1,26 +1,43 @@
 import os
 import requests
-from tools import download_image
-from tools import fetch_file_extension
 from dotenv import load_dotenv
+from tools import download_image
+from urllib.parse import urlparse
+from os.path import splitext
+import argparse
 
 
-def fetch_nasa_opod_images(apikey):
 
-    payload = {"api_key": apikey, "count": 30, }
-    response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
+def fetch_file_extension(url):
+    parse_url = urlparse(url)
+    url_path = parse_url.path
+    return splitext(url_path)[1]
+
+
+def main():
+    load_dotenv()
+    nasa_api_token = os.environ['NASA_APIKEY']
+    parser = argparse.ArgumentParser(description='Скачивает картинты с nasa_apod в папку images.')
+    parser.add_argument('ima', help='количество', type=int)
+
+    args = parser.parse_args()
+    count = args.ima
+    payload = {
+        "api_key": nasa_api_token,
+        "count": count
+    }
+    url = 'https://api.nasa.gov/planetary/apod'
+    response = requests.get(url, params=payload)
     response.raise_for_status()
-    for number, link in enumerate(response.json()):
-        if link["media_type"] != "image":
-            continue
-        image_path = os.path.join('images', f'{number} nasa.jpg')
-        download_image(link["hdurl"], image_path, params=payload)
+
+    for number, api_response in enumerate(response.json(), start=1):
+        link = api_response['url']
+        extension = fetch_file_extension(link)
+        if extension:
+            full_name = f'nasa_{number}{extension}'
+            download_image(link, full_name)
 
 
 if __name__ == '__main__':
+    main()
 
-    load_dotenv()
-    os.makedirs("images", exist_ok=True)
-    print(fetch_file_extension("https://apod.nasa.gov/apod/image/2211/LastRingPortrait_Cassini_4472.jpg"))
-    apikey = os.environ['NASA_APIKEY']
-    fetch_nasa_opod_images(apikey)

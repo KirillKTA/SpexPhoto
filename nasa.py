@@ -17,11 +17,11 @@ def fetch_file_extension(url):
 def main():
     load_dotenv()
     nasa_api_token = os.environ['NASA_APIKEY']
-    parser = argparse.ArgumentParser(description='Скачивает картинты с nasa_apod в папку images.')
-    parser.add_argument('ima', help='количество', type=int)
+    parser = argparse.ArgumentParser(description='Скачивает картинки с nasa_apod в папку images.')
+    parser.add_argument('--count', help='количество', type=int, defult=5)
 
     args = parser.parse_args()
-    count = args.ima
+    count = args.count
     payload = {
         "api_key": nasa_api_token,
         "count": count

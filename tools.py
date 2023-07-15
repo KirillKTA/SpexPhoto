@@ -2,11 +2,14 @@ import requests
 from urllib.parse import urlparse
 from os.path import splitext
 import os
+from dotenv import load_dotenv
 
 
 def download_image(url, image_path, params = None):
-    os.makedirs("images", exist_ok=True)
-    full_name = os.path.join('images', image_path)
+    load_dotenv()
+    folder = os.getenv("FOLDER")
+    os.makedirs(folder, exist_ok=True)
+    full_name = os.path.join(folder, image_path)
     response = requests.get(url, params = params)
     response.raise_for_status()
     with open(full_name, 'wb') as file:
@@ -14,6 +17,6 @@ def download_image(url, image_path, params = None):
 
 
 def fetch_file_extension(url):
-    parse_url = urlparse(url)
-    url_path = parse_url.path
+    persed_url = urlparse(url)
+    url_path = persed_url.path
     return splitext(url_path)[1]

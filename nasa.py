@@ -18,7 +18,7 @@ def main():
     load_dotenv()
     nasa_api_token = os.environ['NASA_APIKEY']
     parser = argparse.ArgumentParser(description='Скачивает картинки с nasa_apod в папку images.')
-    parser.add_argument('--count', help='количество', type=int, defult=5)
+    parser.add_argument('--count', help='количество', type=int, default=5)
 
     args = parser.parse_args()
     count = args.count

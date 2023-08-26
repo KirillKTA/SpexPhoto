@@ -20,3 +20,6 @@ def fetch_file_extension(url):
     persed_url = urlparse(url)
     url_path = persed_url.path
     return splitext(url_path)[1]
+
+if __name__ == '__main__':
+    load_dotenv()

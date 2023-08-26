@@ -14,7 +14,6 @@ def fetch_file_extension(url):
 
 
 def main():
-    load_dotenv()
     nasa_api_token = os.environ['NASA_APIKEY']
     parser = argparse.ArgumentParser(description='Скачивает'
                                                  ' картинки с nasa_apod в'

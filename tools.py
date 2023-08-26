@@ -5,12 +5,12 @@ import os
 from dotenv import load_dotenv
 
 
-def download_image(url, image_path, params = None):
+def download_image(url, image_path, params=None):
     load_dotenv()
     folder = os.getenv("FOLDER")
     os.makedirs(folder, exist_ok=True)
     full_name = os.path.join(folder, image_path)
-    response = requests.get(url, params = params)
+    response = requests.get(url, params=params)
     response.raise_for_status()
     with open(full_name, 'wb') as file:
         file.write(response.content)

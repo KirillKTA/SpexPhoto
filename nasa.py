@@ -7,7 +7,6 @@ from os.path import splitext
 import argparse
 
 
-
 def fetch_file_extension(url):
     parse_url = urlparse(url)
     url_path = parse_url.path
@@ -17,7 +16,9 @@ def fetch_file_extension(url):
 def main():
     load_dotenv()
     nasa_api_token = os.environ['NASA_APIKEY']
-    parser = argparse.ArgumentParser(description='Скачивает картинки с nasa_apod в папку images.')
+    parser = argparse.ArgumentParser(description='Скачивает'
+                                                 ' картинки с nasa_apod в'
+                                                 ' папку images.')
     parser.add_argument('--count', help='количество', type=int, default=5)
 
     args = parser.parse_args()
@@ -40,4 +41,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

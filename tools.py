@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 
 def download_image(url, image_path, params=None):
-    folder = os.getenv("FOLDER")
     os.makedirs(folder, exist_ok=True)
     full_name = os.path.join(folder, image_path)
     response = requests.get(url, params=params)
@@ -22,3 +21,4 @@ def fetch_file_extension(url):
 
 if __name__ == '__main__':
     load_dotenv()
+    folder = os.getenv("FOLDER")

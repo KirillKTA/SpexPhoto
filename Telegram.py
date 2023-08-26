@@ -7,6 +7,7 @@ import argparse
 
 
 if __name__ == '__main__':
+    load_dotenv()
     bot = telegram.Bot(token=os.environ['TELEGRAM_TOKEN'])
     telegram_id = os.environ['TELEGRAM_ID']
     parser = argparse.ArgumentParser()

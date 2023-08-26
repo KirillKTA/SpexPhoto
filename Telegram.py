@@ -9,13 +9,14 @@ import argparse
 if __name__ == '__main__':
     load_dotenv()
     bot = telegram.Bot(token=os.environ['TELEGRAM_TOKEN'])
-    telegram_id=os.environ['TELEGRAM_ID']
+    telegram_id = os.environ['TELEGRAM_ID']
     parser = argparse.ArgumentParser()
-    parser.add_argument("--time",type=int, help="Вставьте с какой периодичностью отправлять фотографии (в секундах)",
+    parser.add_argument("--time", type=int,
+                        help="Вставьте с какой периодичностью "
+                             "отправлять фотографии (в секундах)",
                         default='14400')
     folder = os.getenv("FOLDER")
     args = parser.parse_args()
-
 
     while True:
         all_files = os.walk(folder)
@@ -32,7 +33,3 @@ if __name__ == '__main__':
                     print("соединение прервано")
                     time.sleep(5)
         time.sleep(args.time)
-
-
-
-
